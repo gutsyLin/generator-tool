@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+
+    <context id="mysql"  >
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
+
+        <commentGenerator>
+            <property name="suppressAllComments" value="true" />
+            <property name="suppressDate" value="true" />
+        </commentGenerator>
+
+        <jdbcConnection
+            connectionURL="${db_url}"
+            driverClass="${db_driver}" password="${db_password}" userId="${db_username}" />
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+
+        <javaModelGenerator targetPackage="${model_package}"
+                            targetProject="java\">
+            <!-- <property name="enableSubPackages" value="true" /> -->
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+
+       
+        <!--<sqlMapGenerator targetPackage="mapper"
+                                 targetProject="src\main\resources\">
+                        <property name="enableSubPackages" value="true" /> 
+                </sqlMapGenerator>
+        -->
+        
+        <javaClientGenerator targetPackage="${mapper_package}"
+                             targetProject="java\" type="ANNOTATEDMAPPER" />
+        
+        <table tableName="${db_table}" domainObjectName="${model_class_name}"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false">
+            <generatedKey column="id" sqlStatement="MySql" identity="true" />
+        </table>
+        
+    </context>
+</generatorConfiguration>
